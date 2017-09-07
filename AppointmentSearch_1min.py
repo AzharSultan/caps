@@ -231,7 +231,7 @@ class AppointmentSearch():
                         print "no app"
                     hr = datetime.now().hour
                     mint = datetime.now().minute
-                    if not self.long_term or (hr == 0 && mint > 15 && mint < 17):
+                    if not self.long_term or (hr == 0 and mint > 15 and mint < 17):
                         time.sleep(0.3)
                     else:
                         time.sleep(4)
