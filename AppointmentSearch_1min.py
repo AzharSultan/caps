@@ -189,7 +189,7 @@ class AppointmentSearch():
                         # time.sleep(0.13)
 
                     while time.time() - cap_start < 3.7:
-                        time.sleep(0.1)
+                        time.sleep(0.01)
                     try:
                         a = self.br.find_element_by_name("action:appointment_showMonth")
                     except:
@@ -229,17 +229,20 @@ class AppointmentSearch():
                         print "other months"
                     else:
                         print "no app"
-                    if self.long_term:
-                        time.sleep(4)
-                    else:
+                    hr = datetime.now().hour
+                    mint = datetime.now().minute
+                    if not self.long_term or (hr == 0 && mint > 15 && mint < 17):
                         time.sleep(0.3)
+                    else:
+                        time.sleep(4)
 
                     while 1:
+                        nowt = datetime.now().day
                         try:
                             try:
-                                a = self.br.find_element_by_xpath("//a[contains(@href,'?locationCode=isla&realmId=108&categoryId=205&dateStr=09.08.2017')]")
+                                a = self.br.find_element_by_xpath("//a[contains(@href,'?locationCode=isla&realmId=108&categoryId=205&dateStr=%0.2d.08.2017')]"%(nowt+1))
                             except:
-                                a = self.br.find_element_by_xpath("//a[contains(@href,'?locationCode=isla&realmId=108&categoryId=205&dateStr=08.08.2017')]")
+                                a = self.br.find_element_by_xpath("//a[contains(@href,'?locationCode=isla&realmId=108&categoryId=205&dateStr=%0.2d.08.2017')]"%(nowt+2))
                             a.click()
                             break
                         except:
