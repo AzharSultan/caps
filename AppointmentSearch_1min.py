@@ -203,7 +203,7 @@ class AppointmentSearch():
                         try:
                             #a.send_keys(Keys.RETURN)
                             a.click()
-                            time.sleep(0.1)
+                            time.sleep(0.01)
                         except StaleElementReferenceException:
                             break
 
@@ -251,7 +251,7 @@ class AppointmentSearch():
                     while time.time() - t < 5:
                         try:
                             a.click()
-                            time.sleep(0.1)
+                            time.sleep(0.01)
                         except StaleElementReferenceException:
                             break
 
@@ -309,7 +309,7 @@ class AppointmentSearch():
             while time.time() - t < 3:
                 try:
                     link.click()
-                    time.sleep(0.1)
+                    time.sleep(0.01)
                 except StaleElementReferenceException:
                     break
 
@@ -347,7 +347,7 @@ class AppointmentSearch():
                     # time.sleep(0.15)
                 # time.sleep(0.5)
                 while time.time() - cap_time < 3.7:
-                    time.sleep(0.1)
+                    time.sleep(0.01)
                 os.remove(self.img_path + '.jpg')
                 a = self.br.find_element_by_name("action:appointment_addAppointment")
                 a.click()
@@ -356,7 +356,7 @@ class AppointmentSearch():
                 while time.time() - t < 5:
                     try:
                         a.click()
-                        time.sleep(0.1)
+                        time.sleep(0.01)
                     except StaleElementReferenceException:
                         break
                 print time.time()-self.now
