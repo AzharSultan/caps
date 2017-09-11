@@ -3,6 +3,7 @@ from datetime import datetime
 import base64
 import time
 import os
+import signal
 from glob import glob
 import matplotlib.pyplot as plt
 from skimage.io import imread,imsave
@@ -269,7 +270,9 @@ class AppointmentSearch():
                     self.odd.write('\n\n\n\n')
                     if self.long_term:
                         time.sleep(5)
-            self.br.close()
+            self.br.service.process.send_signal(signal.SIGTERM) # kill the specific phantomjs child proc
+            self.br.quit() 
+#             self.br.close()
             if not self.long_term:
                 break
             # except:
