@@ -9,7 +9,7 @@ from AppointmentSearch_1min import  AppointmentSearch
 @click.option("--timed", default=0)
 # @click.option("--n_gpu", type=int, default=1, help='Specify the number of GPUs to be used '
 #                                                    'If both n_gpus and gpus are set, then gpus flag will take priority')
-def main(i,long_term):
+def main(i,long_term,timed):
 
     params = {
         'long_term': long_term,
