@@ -189,7 +189,7 @@ class AppointmentSearch():
                         print self.cap_fail_msg + " was wrong"
 
                     print "in captcha"
-                    print "before captcha: ",time.time() - self.now, datetime.now().minute
+                    print "before captcha: ",time.time() - self.now, datetime.now().minute, datetime.now().second
                     cap_start = time.time()
                     # time.sleep(1.5)
                     cap_text = self.get_captcha_text(self.br.page_source)
@@ -212,7 +212,7 @@ class AppointmentSearch():
                     except:
                         a = self.br.find_element_by_name("action:appointment_addAppointment")
                     a.click()
-                    print "after captcha: ",time.time() - self.now, datetime.now().minute
+                    print "after captcha: ",time.time() - self.now, datetime.now().minute, datetime.now().second
                     #  a.send_keys(Keys.ENTER)
 
                     t = time.time()
@@ -224,7 +224,7 @@ class AppointmentSearch():
                         except StaleElementReferenceException:
                             break
 
-                    print "finidshed load after captcha: ", time.time() - self.now,  datetime.now().minute
+                    print "finidshed load after captcha: ", time.time() - self.now,  datetime.now().minute, datetime.now().second
                     im2 = imread(self.img_path+'.jpg')
                     os.remove(self.img_path+'2.jpg')
                     # wait_for_page_load(self.br)
@@ -277,7 +277,7 @@ class AppointmentSearch():
 
                 elif self.app_available_msg in contents:
                     print "found date"
-                    print time.time()-self.now, datetime.now().minute
+                    print time.time()-self.now, datetime.now().minute, datetime.now().second
                     self.date_select()
                     # break
 
@@ -344,10 +344,10 @@ class AppointmentSearch():
             # response2 = removeNonAscii(self.br.page_source)
             ## fill appointment form
             if "appointment_newAppointmentForm" in contents:
-                print time.time() - self.now
+                print time.time() - self.now, datetime.now().minute, datetime.now().second
                 ##solve captcha
                 cap_time = time.time()
-                print time.time() - self.now, datetime.now().minute
+                print time.time() - self.now, datetime.now().minute, datetime.now().second
                 a = self.br.find_element_by_name("lastname")
                 a.send_keys(self.last_name)
                 a = self.br.find_element_by_name("firstname")
@@ -381,5 +381,5 @@ class AppointmentSearch():
                         time.sleep(0.01)
                     except StaleElementReferenceException:
                         break
-                print time.time()-self.now, datetime.now().minute
+                print time.time()-self.now, datetime.now().minute, datetime.now().second
                 time.sleep(6)
