@@ -160,7 +160,7 @@ class AppointmentSearch():
                 hr = hms.hour
                 mint = hms.minute
                 sec = hms.second
-                while not (hr == 21 and mint >= 54 and mint <56):
+                while not (hr == 22 and mint >= 15 and mint <20):
                     hms = datetime.now()
                     hr = hms.hour
                     mint = hms.minute
