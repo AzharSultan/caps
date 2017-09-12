@@ -249,7 +249,7 @@ class AppointmentSearch():
                     hr = datetime.now().hour
                     mint = datetime.now().minute
                     if not self.long_term or (hr == 22 and mint >= 15 and mint < 17):
-                        if mint==15 and daretime.now().second < 50:
+                        if mint==15 and datetime.now().second < 50:
                             time.sleep(4)
                         else:
                             time.sleep(0.3)
