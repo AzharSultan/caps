@@ -160,7 +160,7 @@ class AppointmentSearch():
                 hr = hms.hour
                 mint = hms.minute
                 sec = hms.second
-                while not (hr == 22 and mint >= 15 and mint <20):
+                while not (hr == 21 and mint >= 45 and mint <47):
                     time.sleep(15)
                 print hr,mint
             if self.long_term:
