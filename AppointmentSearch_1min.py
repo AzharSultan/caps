@@ -81,6 +81,7 @@ class AppointmentSearch():
         self.odd_path = params.get('odd_path')
         self.now = None
         self.long_term = params.get('long_term')
+        self.timed = params.get('timed')
         # self.br = webdriver.Firefox(executable_path="data/geckodriver")
         self.br = webdriver.PhantomJS()
         # webdriver_service = service.Service('/home/azhar/Downloads/operadriver_linux64/operadriver')
@@ -152,6 +153,13 @@ class AppointmentSearch():
 
 
     def search_bot(self):
+        if self.timed:
+                hms = datetime.now()
+                hr = hms.hour
+                mint = hms.minute
+                sec = hms.second
+                while (hr < 22 and mint < 15):
+                    time.sleep(15)
         while 1:
             if self.long_term:
                 self.br = webdriver.PhantomJS()
@@ -159,7 +167,8 @@ class AppointmentSearch():
             self.br.get(self.app_link)
             start_time = time.time()
             self.now = time.time()
-
+            
+                
             while time.time()-start_time < 120:
                 # print time.time()-self.now
                 # if self.long_term:
@@ -232,8 +241,11 @@ class AppointmentSearch():
                         print "no app"
                     hr = datetime.now().hour
                     mint = datetime.now().minute
-                    if not self.long_term or (hr == 22 and mint > 15 and mint < 17):
-                        time.sleep(0.3)
+                    if not self.long_term or (hr == 22 and mint >= 15 and mint < 17):
+                        if mint==15 and daretime.now().second < 50:
+                            time.sleep(4)
+                        else:
+                            time.sleep(0.3)
                     else:
                         time.sleep(4)
 
