@@ -153,14 +153,16 @@ class AppointmentSearch():
 
 
     def search_bot(self):
-        if self.timed:
+        
+        while 1:
+            if self.timed:
                 hms = datetime.now()
                 hr = hms.hour
                 mint = hms.minute
                 sec = hms.second
-                while (hr < 22 and mint < 15):
+                while (hr <= 22 and mint < 15):
                     time.sleep(15)
-        while 1:
+                print hr,mint
             if self.long_term:
                 self.br = webdriver.PhantomJS()
                 # self.br = webdriver.Firefox(executable_path="data/geckodriver")
@@ -182,7 +184,7 @@ class AppointmentSearch():
                         print self.cap_fail_msg + " was wrong"
 
                     print "in captcha"
-                    print "before captcha: ",time.time() - self.now
+                    print "before captcha: ",time.time() - self.now, datetime.now().minute
                     cap_start = time.time()
                     # time.sleep(1.5)
                     cap_text = self.get_captcha_text(self.br.page_source)
@@ -205,7 +207,7 @@ class AppointmentSearch():
                     except:
                         a = self.br.find_element_by_name("action:appointment_addAppointment")
                     a.click()
-                    print "after captcha: ",time.time() - self.now
+                    print "after captcha: ",time.time() - self.now, datetime.now().minute
                     #  a.send_keys(Keys.ENTER)
 
                     t = time.time()
@@ -217,7 +219,7 @@ class AppointmentSearch():
                         except StaleElementReferenceException:
                             break
 
-                    print "finidshed load after captcha: ", time.time() - self.now
+                    print "finidshed load after captcha: ", time.time() - self.now,  datetime.now().minute
                     im2 = imread(self.img_path+'.jpg')
                     os.remove(self.img_path+'2.jpg')
                     # wait_for_page_load(self.br)
@@ -270,7 +272,7 @@ class AppointmentSearch():
 
                 elif self.app_available_msg in contents:
                     print "found date"
-                    print time.time()-self.now
+                    print time.time()-self.now, datetime.now().minute
                     self.date_select()
                     # break
 
@@ -340,7 +342,7 @@ class AppointmentSearch():
                 print time.time() - self.now
                 ##solve captcha
                 cap_time = time.time()
-                print time.time() - self.now
+                print time.time() - self.now, datetime.now().minute
                 a = self.br.find_element_by_name("lastname")
                 a.send_keys(self.last_name)
                 a = self.br.find_element_by_name("firstname")
@@ -351,7 +353,7 @@ class AppointmentSearch():
                 a.send_keys(self.repeat_email)
                 a = self.br.find_element_by_name("fields[0].content")
                 a.send_keys(self.passnummer)
-                print time.time() - self.now
+                print time.time() - self.now, datetime.now().minute
                 # self.br['passnummer'] = 'ALAN71954'
                 # time.sleep(1.5)
                 cap = self.captcha_solver(self.br.page_source)
@@ -374,5 +376,5 @@ class AppointmentSearch():
                         time.sleep(0.01)
                     except StaleElementReferenceException:
                         break
-                print time.time()-self.now
+                print time.time()-self.now, datetime.now().minute
                 time.sleep(6)
