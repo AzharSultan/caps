@@ -5,13 +5,15 @@ from AppointmentSearch_1min import  AppointmentSearch
 @click.command()
 @click.argument('i')
 # @click.option('--model-weights')
-@click.option("--long_term", default=0,)
+@click.option("--long_term", default=0)
+@click.option("--timed", default=0)
 # @click.option("--n_gpu", type=int, default=1, help='Specify the number of GPUs to be used '
 #                                                    'If both n_gpus and gpus are set, then gpus flag will take priority')
 def main(i,long_term):
 
     params = {
         'long_term': long_term,
+        'timed': timed,
         'app_link': 'https://service2.diplo.de/rktermin/extern/appointment_showMonth.do?locationCode=isla&request_locale=en&realmId=108&categoryId=205&dateStr=01.09.2017',
         'first_name': 'Muhammad',
         'last_name': 'Jehanzeb',
