@@ -84,6 +84,10 @@ class AppointmentSearch():
         self.timed = params.get('timed')
         # self.br = webdriver.Firefox(executable_path="data/geckodriver")
         self.br = webdriver.PhantomJS()
+        self.login = params.get('login')
+        self.password = params.get('password')
+        self.addrs_list = params.get('addrs_list')
+        
         # webdriver_service = service.Service('/home/azhar/Downloads/operadriver_linux64/operadriver')
         # webdriver_service.start()
         # self.br = webdriver.Remote(webdriver_service.service_url, webdriver.DesiredCapabilities.OPERA)
@@ -278,7 +282,8 @@ class AppointmentSearch():
                 elif self.app_available_msg in contents:
                     print "found date"
                     print time.time()-self.now, datetime.now().minute, datetime.now().second
-                    self.date_select()
+                    self.send_email()
+                    self.sleep(10*60*60)
                     # break
 
                 else:
@@ -296,6 +301,9 @@ class AppointmentSearch():
                 break
             # except:
             #     continue
+    def send_email(self):
+        message = 'Dear Sir, \n\nAn Appointment is available.\n\nBest of Luck & Remember me in your prayers,\nAzhar'
+        sendemail(self.login,self.addrs_list,'Apointment Available', message,self.login,self.password)
 
     def date_select(self):
         response = None
@@ -383,3 +391,18 @@ class AppointmentSearch():
                         break
                 print time.time()-self.now, datetime.now().minute, datetime.now().second
                 time.sleep(6)
+                
+def sendemail(from_addr, to_addr_list,
+              subject, message,
+              login, password,
+              smtpserver='smtp.gmail.com:587'):
+    header  = 'From: %s' % from_addr
+    header += 'To: %s' % ','.join(to_addr_list)
+    header += 'Subject: %s' % subject
+    message = header + message
+ 
+    server = smtplib.SMTP(smtpserver)
+    server.starttls()
+    server.login(login,password)
+    problems = server.sendmail(from_addr, to_addr_list, message)
+    server.quit()
