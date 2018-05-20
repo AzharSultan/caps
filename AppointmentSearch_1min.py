@@ -254,7 +254,7 @@ class AppointmentSearch():
                         else:
                             time.sleep(0.3)
                     else:
-                        time.sleep(4)
+                        time.sleep(2)
 
                     while 1:
                         nowt = datetime.now().day
