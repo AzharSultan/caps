@@ -5,7 +5,7 @@ import time
 import os
 import signal
 from glob import glob
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from skimage.io import imread,imsave
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
