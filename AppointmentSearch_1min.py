@@ -83,7 +83,7 @@ class AppointmentSearch():
         self.long_term = params.get('long_term')
         self.timed = params.get('timed')
         # self.br = webdriver.Firefox(executable_path="data/geckodriver")
-        self.br = webdriver.PhantomJS()
+        self.br = webdriver.PhantomJS(service_args=['--cookies-file=/tmp/cookies.txt'])
         # webdriver_service = service.Service('/home/azhar/Downloads/operadriver_linux64/operadriver')
         # webdriver_service.start()
         # self.br = webdriver.Remote(webdriver_service.service_url, webdriver.DesiredCapabilities.OPERA)
@@ -169,7 +169,7 @@ class AppointmentSearch():
                     time.sleep(15)
                 print hr,mint
             if self.long_term:
-                self.br = webdriver.PhantomJS()
+                self.br = webdriver.PhantomJS(service_args=['--cookies-file=/tmp/cookies.txt'])
                 # self.br = webdriver.Firefox(executable_path="data/geckodriver")
             self.br.get(self.app_link)
             start_time = time.time()
